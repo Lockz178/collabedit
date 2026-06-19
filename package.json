@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "tsc -b --noEmit"
+    "lint": "tsc -b --noEmit",
+    "verify": "vite build && vite preview --port 4173 & node scripts/verify-sync.mjs"
   },
   "dependencies": {
     "@tiptap/extension-character-count": "^2.11.5",
@@ -33,6 +34,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "playwright": "^1.61.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.7"
   }
