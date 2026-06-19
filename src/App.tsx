@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react'
 import { EditorContent } from '@tiptap/react'
 import { useCollaboration } from './collab/useCollaboration'
 import { useDocEditor } from './collab/useDocEditor'
-import { resolveRoomId } from './collab/room'
+import { resolveRoomId, startNewDocument } from './collab/room'
 import { loadIdentity, saveIdentity, type Identity } from './collab/identity'
 import { useTheme } from './lib/useTheme'
 import { useToast } from './lib/useToast'
-import { SunIcon, MoonIcon, CheckIcon } from './lib/icons'
+import { SunIcon, MoonIcon, CheckIcon, PlusIcon } from './lib/icons'
 import Toolbar from './components/Toolbar'
 import PresenceBar from './components/PresenceBar'
 import SharePopover from './components/SharePopover'
@@ -42,6 +42,15 @@ export default function App() {
         <PresenceBar peers={peers} />
 
         <div className="header__actions">
+          <button
+            type="button"
+            className="btn"
+            onClick={startNewDocument}
+            title="Start a new empty document"
+          >
+            <PlusIcon />
+            <span className="btn__label-hide-sm">New</span>
+          </button>
           <button
             type="button"
             className="btn btn--icon"

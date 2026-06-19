@@ -157,3 +157,9 @@ export const UserIcon = base(
     <path d="M4 21a8 8 0 0 1 16 0" />
   </>,
 )
+export const PlusIcon = base(
+  <>
+    <line x1="12" y1="5" x2="12" y2="19" />
+    <line x1="5" y1="12" x2="19" y2="12" />
+  </>,
+)

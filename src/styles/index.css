@@ -609,6 +609,9 @@ button {
   .header__brand-tag {
     display: none;
   }
+  .btn__label-hide-sm {
+    display: none;
+  }
   .app__body {
     padding: 14px 10px 60px;
   }

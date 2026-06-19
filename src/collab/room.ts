@@ -7,8 +7,14 @@
 const PREFIX = 'room='
 
 /** URL-safe short id, ~7 chars. Collision risk is negligible for a demo. */
-function generateRoomId(): string {
+export function generateRoomId(): string {
   return Math.random().toString(36).slice(2, 9)
+}
+
+/** Navigate to a brand-new empty document (fresh room) and reload. */
+export function startNewDocument(): void {
+  window.location.hash = `${PREFIX}${generateRoomId()}`
+  window.location.reload()
 }
 
 export function resolveRoomId(): string {
