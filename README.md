@@ -7,6 +7,14 @@
 Type together, see each other's cursors live, and merge every edit conflict-free with CRDTs.
 Pure peer-to-peer over WebRTC. Works offline. Deploys to a static host for **$0**.
 
+**[▶ Live demo](https://collabedit-live.vercel.app)** — open it, then open the same link in another tab or send it to a friend and edit together.
+
+![React](https://img.shields.io/badge/React-18-61dafb?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)
+![Yjs CRDT](https://img.shields.io/badge/Yjs-CRDT-2c2c2c)
+![WebRTC](https://img.shields.io/badge/WebRTC-P2P-ea4335)
+![Deployed on Vercel](https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel)
+
 ![CollabEdit screenshot](docs/screenshot.png)
 
 </div>
