@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📝 CollabEdit
+# CollabEdit
 
 ### Real-time collaborative rich-text editor — Google-Docs-style multiplayer editing, with **no server**.
 
@@ -21,15 +21,15 @@ And there's **no backend to run**. Browsers connect **directly to each other ove
 
 ## Features
 
-- ✍️ **Full rich-text editing** — headings, bold/italic/underline/strike, inline code, ordered/bulleted/task lists, blockquotes, code blocks, links, and dividers (Tiptap / ProseMirror).
-- 👥 **Live multiplayer cursors** — see every collaborator's caret and name, colour-coded, moving in real time.
-- 🟢 **Presence** — stacked avatars show who's in the room; a status pill shows live / waiting / offline.
-- 🔗 **Shareable rooms** — the room id lives in the URL hash, so collaborating is just sharing a link. No accounts.
-- 💾 **Offline-first** — the document persists to IndexedDB; edit with no connection and it syncs automatically when peers reconnect.
-- ↩️ **CRDT-aware undo/redo** — undo only reverts *your* changes, even amid concurrent edits.
-- 🎨 **Identity** — pick your display name and cursor colour; persisted across sessions.
-- 🌗 **Light / dark theme**, live word & character counts, fully keyboard-accessible toolbar.
-- ⚡ **Tiny app shell** (~7 kB gzip) on top of the editor vendor chunk.
+- **Full rich-text editing** — headings, bold/italic/underline/strike, inline code, ordered/bulleted/task lists, blockquotes, code blocks, links, and dividers (Tiptap / ProseMirror).
+- **Live multiplayer cursors** — see every collaborator's caret and name, colour-coded, moving in real time.
+- **Presence** — stacked avatars show who's in the room; a status pill shows live / waiting / offline.
+- **Shareable rooms** — the room id lives in the URL hash, so collaborating is just sharing a link. No accounts.
+- **Offline-first** — the document persists to IndexedDB; edit with no connection and it syncs automatically when peers reconnect.
+- **CRDT-aware undo/redo** — undo only reverts *your* changes, even amid concurrent edits.
+- **Identity** — pick your display name and cursor colour; persisted across sessions.
+- **Light / dark theme**, live word & character counts, fully keyboard-accessible toolbar.
+- **Tiny app shell** (~7 kB gzip) on top of the editor vendor chunk.
 
 ## How it works
 
