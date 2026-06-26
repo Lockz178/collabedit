@@ -108,9 +108,12 @@
 }
 
 .ProseMirror mark {
-  background: #fde68a;
-  border-radius: 2px;
-  padding: 0 1px;
+  background: var(--highlight);
+  color: #1c1700;
+  border-radius: 3px;
+  padding: 0.05em 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* Task lists */

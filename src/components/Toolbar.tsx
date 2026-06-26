@@ -1,7 +1,7 @@
 import { type Editor } from '@tiptap/react'
-import { useCallback } from 'react'
+import { promptForLink } from '../lib/editorActions'
 import {
-  BoldIcon, ItalicIcon, UnderlineIcon, StrikeIcon, CodeIcon,
+  BoldIcon, ItalicIcon, UnderlineIcon, StrikeIcon, CodeIcon, HighlightIcon,
   H1Icon, H2Icon, H3Icon, BulletListIcon, OrderedListIcon, TaskListIcon,
   QuoteIcon, CodeBlockIcon, LinkIcon, DividerIcon, UndoIcon, RedoIcon,
 } from '../lib/icons'
@@ -37,18 +37,6 @@ function TBtn({ onClick, active, disabled, title, children }: BtnProps) {
 const Divider = () => <span className="toolbar__divider" aria-hidden />
 
 export default function Toolbar({ editor }: ToolbarProps) {
-  const setLink = useCallback(() => {
-    if (!editor) return
-    const previous = editor.getAttributes('link').href as string | undefined
-    const url = window.prompt('Link URL', previous ?? 'https://')
-    if (url === null) return
-    if (url === '') {
-      editor.chain().focus().extendMarkRange('link').unsetLink().run()
-      return
-    }
-    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
-  }, [editor])
-
   if (!editor) {
     return <div className="toolbar" aria-hidden />
   }
@@ -130,6 +118,13 @@ export default function Toolbar({ editor }: ToolbarProps) {
           <StrikeIcon />
         </TBtn>
         <TBtn
+          title="Highlight"
+          active={editor.isActive('highlight')}
+          onClick={() => editor.chain().focus().toggleHighlight().run()}
+        >
+          <HighlightIcon />
+        </TBtn>
+        <TBtn
           title="Inline code"
           active={editor.isActive('code')}
           onClick={() => editor.chain().focus().toggleCode().run()}
@@ -181,7 +176,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
         >
           <CodeBlockIcon />
         </TBtn>
-        <TBtn title="Link" active={editor.isActive('link')} onClick={setLink}>
+        <TBtn title="Link" active={editor.isActive('link')} onClick={() => promptForLink(editor)}>
           <LinkIcon />
         </TBtn>
         <TBtn

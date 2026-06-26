@@ -14,6 +14,7 @@
 import { useEditor, type Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
+import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
 import Placeholder from '@tiptap/extension-placeholder'
 import CharacterCount from '@tiptap/extension-character-count'
@@ -40,6 +41,7 @@ export function useDocEditor({ ydoc, provider, identity }: UseDocEditorArgs): Ed
           history: false,
         }),
         Underline,
+        Highlight,
         Link.configure({
           openOnClick: false,
           autolink: true,

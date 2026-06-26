@@ -163,3 +163,52 @@ export const PlusIcon = base(
     <line x1="5" y1="12" x2="19" y2="12" />
   </>,
 )
+export const HighlightIcon = base(
+  <>
+    <path d="M9 11l-4 4v3h3l4-4" />
+    <path d="M12.5 7.5l4 4" />
+    <path d="M15 5l4 4-6.5 6.5-4-4z" />
+  </>,
+)
+export const DownloadIcon = base(
+  <>
+    <path d="M12 3v12" />
+    <path d="M7 11l5 5 5-5" />
+    <path d="M5 21h14" />
+  </>,
+)
+export const KeyboardIcon = base(
+  <>
+    <rect x="2" y="6" width="20" height="12" rx="2" />
+    <path d="M6 10h0M10 10h0M14 10h0M18 10h0M6 14h0M18 14h0" strokeWidth={2.4} />
+    <line x1="9" y1="14" x2="15" y2="14" />
+  </>,
+)
+export const FileTextIcon = base(
+  <>
+    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+    <path d="M14 3v5h5" />
+    <line x1="9" y1="13" x2="15" y2="13" />
+    <line x1="9" y1="17" x2="13" y2="17" />
+  </>,
+)
+export const MarkdownIcon = base(
+  <>
+    <rect x="3" y="6" width="18" height="12" rx="2" />
+    <path d="M6 15V9l2.5 3L11 9v6" strokeWidth={1.7} />
+    <path d="M15 9v4M15 13l-1.5-1.5M15 13l1.5-1.5" strokeWidth={1.7} />
+  </>,
+)
+export const CodeBracketsIcon = base(
+  <>
+    <path d="M8 4H6a2 2 0 0 0-2 2v3a2 2 0 0 1-2 2 2 2 0 0 1 2 2v3a2 2 0 0 0 2 2h2" />
+    <path d="M16 4h2a2 2 0 0 1 2 2v3a2 2 0 0 0 2 2 2 2 0 0 0-2 2v3a2 2 0 0 1-2 2h-2" />
+  </>,
+)
+export const CloseIcon = base(
+  <>
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="18" y1="6" x2="6" y2="18" />
+  </>,
+)
+export const ChevronDownIcon = base(<polyline points="6 9 12 15 18 9" />)

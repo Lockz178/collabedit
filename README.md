@@ -29,15 +29,17 @@ And there's **no backend to run**. Browsers connect **directly to each other ove
 
 ## Features
 
-- **Full rich-text editing** — headings, bold/italic/underline/strike, inline code, ordered/bulleted/task lists, blockquotes, code blocks, links, and dividers (Tiptap / ProseMirror).
+- **Full rich-text editing** — headings, bold/italic/underline/strike, highlight, inline code, ordered/bulleted/task lists, blockquotes, code blocks, links, and dividers (Tiptap / ProseMirror).
+- **Floating bubble menu** — select any text to get a contextual formatting toolbar right where you're working.
+- **Export anywhere** — copy as Markdown, or download the document as Markdown, styled HTML, or plain text.
 - **Live multiplayer cursors** — see every collaborator's caret and name, colour-coded, moving in real time.
 - **Presence** — stacked avatars show who's in the room; a status pill shows live / waiting / offline.
 - **Shareable rooms** — the room id lives in the URL hash, so collaborating is just sharing a link. No accounts.
 - **Offline-first** — the document persists to IndexedDB; edit with no connection and it syncs automatically when peers reconnect.
 - **CRDT-aware undo/redo** — undo only reverts *your* changes, even amid concurrent edits.
 - **Identity** — pick your display name and cursor colour; persisted across sessions.
-- **Light / dark theme**, live word & character counts, fully keyboard-accessible toolbar.
-- **Tiny app shell** (~7 kB gzip) on top of the editor vendor chunk.
+- **Polished, accessible UI** — light / dark theme, live word/character counts and reading time, a keyboard-shortcuts sheet (press `?`), focus-visible rings, and reduced-motion support.
+- **Tiny app shell** (~10 kB gzip) on top of the editor vendor chunk.
 
 ## How it works
 
@@ -115,8 +117,8 @@ src/
 │   ├── useDocEditor.ts       # Tiptap ⇄ Yjs binding
 │   ├── identity.ts           # persisted name + colour
 │   └── room.ts               # shareable room id in URL hash
-├── components/               # Toolbar, PresenceBar, Share/Identity popovers, …
-├── lib/                      # icons, theme & toast hooks
+├── components/               # Toolbar, BubbleToolbar, ExportMenu, ShortcutsModal, PresenceBar, …
+├── lib/                      # icons, theme/toast/popover hooks, Markdown serializer
 ├── styles/                   # design system + editor/cursor CSS
 └── App.tsx                   # composition
 ```

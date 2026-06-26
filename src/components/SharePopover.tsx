@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { roomShareUrl } from '../collab/room'
+import { usePopover } from '../lib/usePopover'
 import { ShareIcon, CopyIcon, CheckIcon } from '../lib/icons'
 
 interface SharePopoverProps {
@@ -8,21 +9,9 @@ interface SharePopoverProps {
 }
 
 export default function SharePopover({ roomId, onCopied }: SharePopoverProps) {
-  const [open, setOpen] = useState(false)
+  const { open, anchorRef, toggle } = usePopover()
   const [copied, setCopied] = useState(false)
-  const anchorRef = useRef<HTMLDivElement>(null)
   const url = roomShareUrl(roomId)
-
-  useEffect(() => {
-    if (!open) return
-    const onDown = (e: MouseEvent) => {
-      if (anchorRef.current && !anchorRef.current.contains(e.target as Node)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', onDown)
-    return () => document.removeEventListener('mousedown', onDown)
-  }, [open])
 
   const copy = async () => {
     try {
@@ -46,7 +35,7 @@ export default function SharePopover({ roomId, onCopied }: SharePopoverProps) {
       <button
         type="button"
         className="btn btn--primary"
-        onClick={() => setOpen((o) => !o)}
+        onClick={toggle}
         aria-expanded={open}
       >
         <ShareIcon />

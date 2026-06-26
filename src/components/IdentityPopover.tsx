@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
 import { USER_COLORS, type Identity } from '../collab/identity'
+import { usePopover } from '../lib/usePopover'
 import { UserIcon } from '../lib/icons'
 
 interface IdentityPopoverProps {
@@ -8,26 +8,14 @@ interface IdentityPopoverProps {
 }
 
 export default function IdentityPopover({ identity, onChange }: IdentityPopoverProps) {
-  const [open, setOpen] = useState(false)
-  const anchorRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!open) return
-    const onDown = (e: MouseEvent) => {
-      if (anchorRef.current && !anchorRef.current.contains(e.target as Node)) {
-        setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', onDown)
-    return () => document.removeEventListener('mousedown', onDown)
-  }, [open])
+  const { open, anchorRef, toggle } = usePopover()
 
   return (
     <div className="popover-anchor" ref={anchorRef}>
       <button
         type="button"
         className="btn btn--icon"
-        onClick={() => setOpen((o) => !o)}
+        onClick={toggle}
         title="Your identity"
         aria-label="Edit your name and color"
         style={{ position: 'relative' }}

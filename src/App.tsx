@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { EditorContent } from '@tiptap/react'
 import { useCollaboration } from './collab/useCollaboration'
 import { useDocEditor } from './collab/useDocEditor'
@@ -8,15 +8,19 @@ import { useTheme } from './lib/useTheme'
 import { useToast } from './lib/useToast'
 import { SunIcon, MoonIcon, CheckIcon, PlusIcon } from './lib/icons'
 import Toolbar from './components/Toolbar'
+import BubbleToolbar from './components/BubbleToolbar'
 import PresenceBar from './components/PresenceBar'
 import SharePopover from './components/SharePopover'
 import IdentityPopover from './components/IdentityPopover'
+import ExportMenu from './components/ExportMenu'
 import DocTitle from './components/DocTitle'
 import StatusBar from './components/StatusBar'
+import ShortcutsModal from './components/ShortcutsModal'
 
 export default function App() {
   const roomId = useMemo(() => resolveRoomId(), [])
   const [identity, setIdentity] = useState<Identity>(() => loadIdentity())
+  const [shortcutsOpen, setShortcutsOpen] = useState(false)
   const { theme, toggle } = useTheme()
   const { message, show } = useToast()
 
@@ -28,12 +32,27 @@ export default function App() {
     saveIdentity(next)
   }
 
+  // Press "?" anywhere outside an editable field to open the shortcuts sheet.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== '?' || e.metaKey || e.ctrlKey || e.altKey) return
+      const el = document.activeElement as HTMLElement | null
+      const typing =
+        el && (el.isContentEditable || el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')
+      if (typing) return
+      e.preventDefault()
+      setShortcutsOpen(true)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
   return (
     <div className="app">
       <header className="header">
         <div className="header__brand">
           <img className="header__brand-logo" src="/favicon.svg" alt="" />
-          CollabEdit
+          <span className="header__brand-name">CollabEdit</span>
           <span className="header__brand-tag">peer-to-peer</span>
         </div>
 
@@ -51,6 +70,7 @@ export default function App() {
             <PlusIcon />
             <span className="btn__label-hide-sm">New</span>
           </button>
+          <ExportMenu editor={editor} ydoc={ydoc} roomId={roomId} onExported={show} />
           <button
             type="button"
             className="btn btn--icon"
@@ -70,13 +90,22 @@ export default function App() {
           <div className="doc__paper">
             <DocTitle ydoc={ydoc} />
             <Toolbar editor={editor} />
+            <BubbleToolbar editor={editor} />
             <div className="editor-scroll">
               <EditorContent editor={editor} />
             </div>
           </div>
-          <StatusBar editor={editor} status={status} roomId={roomId} synced={synced} />
+          <StatusBar
+            editor={editor}
+            status={status}
+            roomId={roomId}
+            synced={synced}
+            onShowShortcuts={() => setShortcutsOpen(true)}
+          />
         </div>
       </main>
+
+      <ShortcutsModal open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
 
       {message && (
         <div className="toast" role="status">
